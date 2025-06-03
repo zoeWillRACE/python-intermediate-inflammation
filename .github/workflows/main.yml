@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> main
 name: CI
 
 # We can specify which Github events will trigger a CI build
