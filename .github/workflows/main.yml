@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 name: CI
 
 # We can specify which Github events will trigger a CI build
@@ -31,4 +35,4 @@ jobs:
 
     - name: Test with PyTest
       run: |
-        python3 -m pytest 
+        python3 -m pytest --cov=inflammation.models tests/test_models.py
