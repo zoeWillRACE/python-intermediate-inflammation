@@ -19,11 +19,11 @@ def load_csv(filename):
 
 def patient_normalise(data):
     """Normalising patient data."""
+    if not isinstance(data, np.ndarray):
+        raise TypeError("This data is not a nd array.")
     is_zero = data<0
     if is_zero.any():
         raise ValueError(f"{np.where(is_zero)}")
-    if not isinstance(data, np.ndarray):
-        raise TypeError("This data is not a nd array.")
     if len(data.shape) != 2:
         raise ValueError('inflammation array should be 2-dimensional')
     patient_max_inflammation = np.max(data, axis=1)
