@@ -18,10 +18,9 @@ def load_csv(filename):
     """
     return np.loadtxt(fname=filename, delimiter=",")
 
-
 def patient_normalise(data):
+    """Normalising patient data."""
     is_zero = data<0
-    
     if is_zero.any():
         raise ValueError(f"{np.where(is_zero)}")
     if not isinstance(data, np.ndarray):
@@ -50,5 +49,9 @@ def daily_min(data):
     return np.min(data, axis=0)
 
 class Patient:
+    """A patient class."""
     def __init__(self, name):
         self.name = name
+    def get_name(self):
+        """Return patient's name."""
+        return self.name
