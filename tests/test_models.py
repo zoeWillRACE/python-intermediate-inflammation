@@ -56,3 +56,62 @@ def test_patient_normalise(test, expected):
        Test with a relative and absolute tolerance of 0.01."""
     result = patient_normalise(np.array(test))
     npt.assert_allclose(result, np.array(expected), rtol=1e-2, atol=1e-2)
+
+def test_patient_normalise_fail():
+    argument = "This data is not a nd array."
+    with pytest.raises(TypeError, match=argument):
+        result = patient_normalise([1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+@pytest.mark.parametrize('test, expected, expect_raises',
+    [
+        # previous test cases here, with None for expect_raises, except for the next one - add ValueError
+        # as an expected exception (since it has a negative input value)
+        (
+            [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+            [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+            None
+        ),
+        (
+            [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+            [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
+            None
+        ),
+        (
+            [[float('nan'), 1, 1], [1, 1, 1], [1, 1, 1]],
+            [[0, 1, 1], [1, 1, 1], [1, 1, 1]],
+            AssertionError
+        ),
+        (
+            [[1, 2, 3], [4, 5, float('nan')], [7, 8, 9]],
+            [[0.33, 0.67, 1], [0.8, 1, 0], [0.78, 0.89, 1]],
+            AssertionError
+        ),
+        (
+            [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+            ValueError
+        ),
+        (
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+            None
+        ),
+        (
+            [[-1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+            ValueError,
+        ),
+        (
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+            [[0.33, 0.67, 1], [0.67, 0.83, 1], [0.78, 0.89, 1]],
+            None,
+        ),
+    ])
+def test_patient_normalise_all(test, expected, expect_raises):
+    """Test normalisation works for arrays of one and positive integers."""
+    if expect_raises is not None:
+        with pytest.raises(expect_raises):
+            patient_normalise(np.array(test))
+    else:
+        result = patient_normalise(np.array(test))
+        npt.assert_allclose(result, np.array(expected), rtol=1e-2, atol=1e-2)
