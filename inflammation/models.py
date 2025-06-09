@@ -13,7 +13,6 @@ import numpy as np
 
 def load_csv(filename):  
     """Load a Numpy array from a CSV
-
     :param filename: Filename of CSV to load
     """
     return np.loadtxt(fname=filename, delimiter=",")
@@ -49,9 +48,10 @@ def daily_min(data):
     return np.min(data, axis=0)
 
 class Patient:
-    """A patient class."""
+    """Patients class."""
     def __init__(self, name):
         self.name = name
+
     def get_name(self):
-        """Return patient's name."""
+        """Returns patient's name."""
         return self.name
