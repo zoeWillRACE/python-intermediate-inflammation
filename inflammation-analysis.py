@@ -4,8 +4,10 @@ in our imaginary hospital.
 """
 
 import argparse
+import os
 
 from inflammation import models, views
+from inflammation.compute_data import analyse_data
 
 
 def main(args):
@@ -28,6 +30,7 @@ def main(args):
                 'min': models.daily_min(inflammation_data)}
 
     views.visualize(view_data)
+
 
 
 if __name__ == "__main__":
