@@ -4,7 +4,7 @@ import math
 import numpy.testing as npt
 from inflammation.models import analyse_data
 from inflammation.compute_data import CSVDataSource
-from inflammation.compute_data import compute_standard_deviation_by_day
+from inflammation.models import compute_standard_deviation_by_day
 from unittest.mock import Mock
 
 
