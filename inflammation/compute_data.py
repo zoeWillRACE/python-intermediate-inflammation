@@ -3,9 +3,8 @@
 
 import glob
 import os
-import numpy as np
 
-from inflammation.models import load_csv, load_json, daily_mean, compute_standard_deviation_by_day
+from inflammation.models import load_csv, load_json
 
 
 class CSVDataSource:

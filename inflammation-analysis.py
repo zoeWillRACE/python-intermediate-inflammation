@@ -10,19 +10,19 @@ from inflammation import models, views
 from inflammation.models import analyse_data
 
 
-def main(args):
+def main(argus):
     """The MVC Controller of the patient inflammation data system.
 
     The Controller is responsible for:
     - selecting the necessary models and views for the current task
     - passing data between models and views
     """
-    infiles = args.infiles
+    infiles = argus.infiles
     if not isinstance(infiles, list):
-        infiles = [args.infiles]
+        infiles = [argus.infiles]
 
 
-    if args.full_data_analysis:
+    if argus.full_data_analysis:
         analyse_data(os.path.dirname(infiles[0]))
         return
 
