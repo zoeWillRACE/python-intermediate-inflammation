@@ -1,11 +1,17 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "python-intermediate-inflammation"
-version = "0.0.0"
-requires-python = ">=3.9"
+name = "inflammation"
+version = "1.0.0"
+description = "Analyse patient inflammation data"
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+]
 
-[tool.setuptools]
-packages = ["inflammation"]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
